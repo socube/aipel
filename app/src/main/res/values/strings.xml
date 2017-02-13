@@ -1,0 +1,108 @@
+<resources>
+    <string name="app_name">AIPEL</string>
+
+    <!-- wizard -->
+    <string name="head1">나만의 스마트한 재정 관리 비서</string>
+    <string name="head2">심플하고 직관적인 소비 통계</string>
+    <string name="head3">계획성 있는 탄탄한 지출 설계</string>
+    <string name="description1">실시간으로 맞춤 혜택을 알려주고\n불필요한 소비는 막아주는\n스마트비서 에이펠입니다.</string>
+    <string name="description2">지출,수입,예산을 일간,주간,월간별로\n한눈에 조회할수 있습니다.</string>
+    <string name="description3">항목별로 한도를 정해 더 이상의 충동구매는 그만\n균형 있는 자산관리를 시작해보세요.</string>
+
+    <!-- login -->
+    <string name="sign_up_with_google">구글계정으로 회원가입</string>
+    <string name="sign_up_with_email">이메일로 회원가입</string>
+    <string name="sign_in_with_google">구글계정으로 로그인</string>
+    <string name="sign_in_with_email">이메일로 로그인</string>
+    <string name="have_id">이미 회원이신가요?</string>
+    <string name="no_id">아직 계정이 없으신가요?</string>
+    <string name="go_to_login">로그인 하기</string>
+    <string name="go_to_signUp">회원가입 하기</string>
+
+    <!-- chat -->
+    <string name="send">전송</string>
+
+    <!-- tab expense -->
+    <string name="safeToSpend">Safe-to-Spend</string>
+    <string name="current_safeToSpend">금월 안전사용범위</string>
+    
+    <!-- safe to spend dialog -->
+    <string name="availableBudget">사용가능예산</string>
+    <string name="targetBudget">목표 예산</string>
+    <string name="fixedBudget">고정지출액</string>
+    <string name="monthlyExpense">금월 누적 사용금액</string>
+    <string name="ok">OK</string>
+
+    <!-- floating action button -->
+    <string name="button_expense">지출내역 추가</string>
+    <string name="button_earn">수입내역 추가</string>
+    <string name="button_fixed_budget">고정지출 추가</string>
+    <string name="button_target_budget">목표 추가</string>
+
+    <!-- register fixed budget -->
+    <string name="fixed_budget_1_q">어떤 지출인가요?</string>
+    <string name="fixed_budget_1_a">사용내역을 입력해주세요.</string>
+    <string name="fixed_budget_2_q">얼마나 지출이 발생하나요?</string>
+    <string name="fixed_budget_2_a">금액을 입력해주세요.</string>
+    <string name="fixed_budget_3_q">언제 지출이 발생하나요?</string>
+    <string name="fixed_budget_3_a">매달 31일</string>
+
+    <string name="target_budget_1_q">어떤 목표인가요?</string>
+    <string name="target_budget_2_q">얼마나 모아야 하나요?</string>
+    <string name="target_budget_3_q">언제까지 모아야 하나요?</string>
+    <string name="target_budget_3_a">2017년 12월 1일</string>
+
+    <string name="won">원</string>
+    <string name="due_date_example">예) 21일</string>
+
+    <!-- register expense-->
+    <string name="okButton">확인</string>
+
+    <string name="expense_1_q">어디에 사용하셨나요?</string>
+    <string name="expense_2_q">카테고리 설정</string>
+    <string name="expense_3_q">얼마나 사용하셨나요?</string>
+    <string name="expense_4_q">언제 사용하셨나요?</string>
+
+    <string name="earn_1_q">어떤 수입인가요?</string>
+    <string name="earn_3_q">얼마큼의 수입이 발생하셨나요?</string>
+    <string name="earn_4_q">언제 수입이 발생하셨나요?</string>
+    <string name="earn_1_a">수입내용을 입력해주세요.</string>
+
+    <!-- category radio button-->
+    <string name="category_earn_1">주수입</string>
+    <string name="category_earn_2">부수입</string>
+    <string name="category_earn_3">이체</string>
+    <string name="category_earn_4">기타</string>
+    <string name="category_expense_1">식비</string>
+    <string name="category_expense_2">쇼핑</string>
+    <string name="category_expense_3">문화/사교</string>
+    <string name="category_expense_4">교육</string>
+    <string name="category_expense_5">교통</string>
+    <string name="category_expense_6">주거/통신</string>
+    <string name="category_expense_7">기타</string>
+    
+    <!-- survey -->
+    <string name="survey_1">안녕하세요\n당신의 재정관리 비서\n에이펠이에요.\n\n제가 앞으로 당신을\n어떻게 불러드리는게 좋을까요?</string>
+    <string name="survey_2">좀 더 정확한 코칭을\n해드리기 위해\n성별과 나이를 물어봐도 될까요?</string>
+    <string name="survey_3">이번 달 사용 가능한 예산이\n어떻게 되나요?\n\n알려주신 내용을 바탕으로\n소비예산을 측정해드릴께요.</string>
+    <string name="survey_answer_1">호칭을 입력해주세요</string>
+    <string name="survey_answer_2">나이를 입력해주세요</string>
+    <string name="survey_answer_3">사용 가능한 예산을 입력해주세요</string>
+    <string name="man">남자</string>
+    <string name="woman">여자</string>
+
+    <!-- menu -->
+    <string name="delete">삭제</string>
+    <string name="option">옵션</string>
+    
+    <!-- option -->
+    <string name="option_sms_head">문자 불러오기</string>
+    <string name="option_sms_text">문자함에 있는 수입/지출 문자를 불러옵니다.</string>
+    <string name="option_id_head">계정</string>
+    <string name="option_service_head">서비스 이용약관</string>
+    <string name="option_service_text">서비스 약관, 개인정보 취급방식, 위치정보 활용, 탈퇴</string>
+    <string name="option_license_head">오픈소스 라이선스</string>
+    <string name="option_license_text">라이선스에 대한 사용 정보</string>
+    <string name="option_reset_head">초기화</string>
+    <string name="option_reset_text">모든 데이터와 설정을 초기화 한다.</string>
+</resources>

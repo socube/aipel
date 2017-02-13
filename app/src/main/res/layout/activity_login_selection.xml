@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:background="@drawable/splash_background"
+    android:fitsSystemWindows="true"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/login_title"
+        android:layout_width="66dp"
+        android:layout_height="18dp"
+        android:layout_marginBottom="24dp"
+        android:layout_gravity="center"
+        android:src="@drawable/a_i_p_e_l"/>
+
+    <LinearLayout
+        android:id="@+id/login_selection_google"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#46ffffff"
+        android:padding="10dp"
+        android:clickable="true">
+        
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@drawable/ic_google_icon"/>
+        
+        <TextView
+            android:id="@+id/login_selection_google_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/sign_up_with_google"
+            android:textSize="14sp"/>
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/login_selection_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:background="#46ffffff"
+        android:padding="10dp"
+        android:clickable="true">
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@drawable/ic_close_envelope"/>
+
+        <TextView
+            android:id="@+id/login_selection_email_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/sign_up_with_email"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/login_selection_go_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/login_selection_des1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/have_id"/>
+
+        <TextView
+            android:id="@+id/login_selection_des2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/go_to_login"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

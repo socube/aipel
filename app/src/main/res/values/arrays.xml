@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="expense_category">
+        <item>식비</item>
+        <item>쇼핑</item>
+        <item>문화/사교</item>
+        <item>교육</item>
+        <item>교통</item>
+        <item>주거/통신</item>
+        <item>기타</item>
+    </string-array>
+
+    <string-array name="earn_category">
+        <item>주수입</item>
+        <item>부수입</item>
+        <item>이체</item>
+        <item>기타</item>
+    </string-array>
+</resources>

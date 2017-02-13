@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="#82000000">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/layout_round_corner_background">
+
+        <TextView
+            android:id="@+id/dialog_sms_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:textColor="#4A4A4A"
+            android:text="문자를 읽어드리는 중입니다."/>
+
+        <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+            android:id="@+id/dialog_sms_progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            app:rcProgress="0"
+            app:rcMax="100"
+            app:rcRadius="8dp"
+            app:rcBackgroundPadding="0dp"
+            app:rcReverse="false"
+            app:rcProgressColor="#F26976"
+            app:rcBackgroundColor="#D8D8D8"/>
+
+        <TextView
+            android:id="@+id/dialog_sms_percent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:textColor="#E75454"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

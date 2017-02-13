@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EDEDED">
+
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/option_toolbar"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <ImageView
+                android:id="@+id/option_x"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:paddingRight="10dp"
+                android:paddingEnd="10dp"
+                android:paddingLeft="5dp"
+                android:paddingStart="5dp"
+                android:src="@drawable/ic_x"/>
+
+            <TextView
+                android:id="@+id/option_title"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#4A4A4A"
+                android:text="@string/option"/>
+
+        </android.support.v7.widget.Toolbar>
+
+        <LinearLayout android:id="@+id/option_sms" style="@style/OptionLinearLayout"
+            android:layout_marginTop="30dp">
+
+            <TextView style="@style/OptionHeadText"
+                android:text="@string/option_sms_head"/>
+
+            <TextView style="@style/OptionText"
+                android:text="@string/option_sms_text"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_date_range_black_24dp"/>
+
+                <TextView
+                    android:id="@+id/option_sms_date"
+                    style="@style/OptionText"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View style="@style/OptionView"/>
+
+        <LinearLayout android:id="@+id/option_id" style="@style/OptionLinearLayout">
+
+            <TextView style="@style/OptionHeadText"
+                android:text="@string/option_id_head"/>
+
+            <TextView android:id="@+id/option_email"
+                style="@style/OptionText"/>
+
+        </LinearLayout>
+
+        <View style="@style/OptionView"/>
+
+        <LinearLayout android:id="@+id/option_service" style="@style/OptionLinearLayout">
+
+            <TextView style="@style/OptionHeadText"
+                android:text="@string/option_service_head"/>
+
+            <TextView style="@style/OptionText"
+                android:text="@string/option_service_text"/>
+
+        </LinearLayout>
+
+        <View style="@style/OptionView"/>
+
+        <LinearLayout android:id="@+id/option_license" style="@style/OptionLinearLayout">
+
+            <TextView style="@style/OptionHeadText"
+                android:text="@string/option_license_head"/>
+
+            <TextView style="@style/OptionText"
+                android:text="@string/option_license_text"/>
+
+        </LinearLayout>
+
+        <View style="@style/OptionView"/>
+
+        <LinearLayout android:id="@+id/option_reset" style="@style/OptionLinearLayout">
+
+            <TextView style="@style/OptionHeadText"
+                android:text="@string/option_reset_head"/>
+
+            <TextView style="@style/OptionText"
+                android:text="@string/option_reset_text"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

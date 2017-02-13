@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.blackrubystudio.aipel3">
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.READ_SMS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".LoginSelectionActivity"/>
+        <activity android:name=".LoginWithEmailActivity"/>
+        <activity android:name=".WizardActivity"/>
+        <activity android:name=".ChatActivity"/>
+        <activity android:name=".RegisterBudget"/>
+        <activity android:name=".RegisterExpense"/>
+        <activity android:name=".SurveyActivity"/>
+        <activity android:name=".OptionActivity"/>
+        <activity android:name=".TabActivity"/>
+
+        <service android:name="com.blackrubystudio.aipel3.sms.SmsService"/>
+
+        <receiver
+            android:name="com.blackrubystudio.aipel3.BootReceiver"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="com.blackrubystudio.aipel3.PackageReceiver"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
