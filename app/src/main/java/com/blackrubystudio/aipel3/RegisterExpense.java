@@ -78,6 +78,9 @@ public class RegisterExpense extends AppCompatActivity {
 
         // initialize view
         initializeView();
+
+        BudgetTextWatcher textWatcher = new BudgetTextWatcher(expenseEditText);
+        expenseEditText.addTextChangedListener(textWatcher);
     }
 
     @Override
@@ -196,8 +199,6 @@ public class RegisterExpense extends AppCompatActivity {
 
             placeEditText.setText(accountingItem.getPlace());
             expenseEditText.setText(StandardFormat.onCurrencyFormat(money));
-            BudgetTextWatcher textWatcher = new BudgetTextWatcher(expenseEditText);
-            expenseEditText.addTextChangedListener(textWatcher);
 
             // set category
             if(isExpense){

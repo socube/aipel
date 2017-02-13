@@ -11,7 +11,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blackrubystudio.aipel3.util.BudgetTextWatcher;
 import com.blackrubystudio.aipel3.util.CircleAnimIndicator;
+import com.blackrubystudio.aipel3.util.StandardFormat;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -74,6 +76,9 @@ public class SurveyActivity extends AppCompatActivity {
                 linearLayout.setVisibility(View.GONE);
                 ageEditText.setVisibility(View.GONE);
                 budgetEditText.setVisibility(View.VISIBLE);
+
+                BudgetTextWatcher textWatcher = new BudgetTextWatcher(budgetEditText);
+                budgetEditText.addTextChangedListener(textWatcher);
                 break;
         }
     }
@@ -109,7 +114,7 @@ public class SurveyActivity extends AppCompatActivity {
                 if (budget.isEmpty()){
                     budgetEditText.setError("정보가 필요합니다.");
                     result = false;
-                }else if (budget.length() > 8){
+                }else if (budget.length() > 9){
                     budgetEditText.setError("입력 가능 액수를 초과합니다.");
                     result = false;
                 }else{
@@ -138,7 +143,8 @@ public class SurveyActivity extends AppCompatActivity {
             intent.putExtra("page", pageNum+1);
             startActivity(intent);
         }else{
-            editor.putInt("total_budget", Integer.parseInt(budgetEditText.getText().toString()));
+            int money = StandardFormat.removeCurrencyFormat(budgetEditText.getText().toString());
+            editor.putInt("total_budget", money);
             editor.putBoolean("hasInfo", true);
             editor.apply();
 

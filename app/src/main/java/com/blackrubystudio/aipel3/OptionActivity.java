@@ -47,11 +47,11 @@ public class OptionActivity extends AppCompatActivity {
         dateTextView.setText(getDateText());
         dialogSmsReadUtils = new DialogSmsReadUtils(OptionActivity.this, startDate);
 
-        /*String emailString = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        String emailString = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         if(emailString == null){
             emailString = "클릭시 로그아웃 됩니다.";
         }
-        emailTextView.setText(emailString);*/
+        emailTextView.setText(emailString);
 
         checkSMSPermissions();
     }
