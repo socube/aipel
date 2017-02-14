@@ -31,19 +31,16 @@ public class SmsCategoryReceiver implements Callback<Category> {
 
     @Override
     public void onFailure(Call<Category> call, Throwable t) {
-        Log.d("expense", "SmsCategory onFailure");
+        //Log.d("expense", "SmsCategory onFailure");
     }
 
     @Override
     public void onResponse(Call<Category> call, Response<Category> response) {
-        Log.d("expense", "SmsCategory onResponse");
-        if (response.body().getPlace() == null){
-            return;
-        }
-        if(response.body().getPlace().contains("알 수 없음")){
-            return;
-        }
+        //Log.d("expense", "SmsCategory onResponse");
         try {
+            if (response.body().getPlace().contains("알 수 없음")) {
+                return;
+            }
             AccountingItem accountingItem = new AccountingItem(response.body().getPlace(),
                     response.body().getIndex(),
                     Integer.parseInt(smsObject.getPrice()),
@@ -52,7 +49,7 @@ public class SmsCategoryReceiver implements Callback<Category> {
 
             AddItem(accountingItem);
             Log.d("expense", "SmsCategory Received");
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
