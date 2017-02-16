@@ -31,7 +31,7 @@ public class SmsCategoryReceiver implements Callback<Category> {
 
     @Override
     public void onFailure(Call<Category> call, Throwable t) {
-        //Log.d("expense", "SmsCategory onFailure");
+        Log.d("expense", "SmsCategory onFailure");
     }
 
     @Override
@@ -48,7 +48,7 @@ public class SmsCategoryReceiver implements Callback<Category> {
                     Integer.parseInt(smsObject.getTime()));
 
             AddItem(accountingItem);
-            Log.d("expense", "SmsCategory Received");
+            //Log.d("expense", "SmsCategory Received");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -17,8 +17,14 @@ public class SmsParser {
     private Pattern notSufficientPattern = Pattern.compile("(거절|취소|예정|할인)");
     private Pattern earnPattern = Pattern.compile("(입금)");
     private Pattern wonPattern = Pattern.compile("[\\d,.]+원");
+
+    private Pattern sufficientPattern = Pattern.compile("발신|승인|출금");
+    private Pattern cardNamePattern = Pattern.compile("체크|카드");
     private Pattern cardNumPattern = Pattern.compile("\\([0-9]\\*[0-9]\\*\\)");
-    private Pattern cardNamePattern = Pattern.compile("(신한|우리|국민|씨티)(체크|카드)");
+    private Pattern paymentMethodPattern = Pattern.compile("일시불|잔액|누적");
+    private Pattern userNamePattern = Pattern.compile("\\*");
+    private Pattern datePattern = Pattern.compile("\\d{1,2}/\\d{1,2}");
+    private Pattern timePattern = Pattern.compile("\\d{1,2}:\\d{1,2}");
 
     public SmsObject parse(Intent intent) {
         SmsObject smsObject = new SmsObject();
@@ -54,61 +60,60 @@ public class SmsParser {
         return smsObject;
     }
 
-    public SmsObject getSmsObject(String message, String date, String time){
+    public SmsObject getSmsObject(String message, String date, String time) {
         SmsObject smsObject = new SmsObject();
-        Log.d("sms", message);
-        if(!message.isEmpty()) {
-            Matcher wonMatcher = wonPattern.matcher(message);
-            Matcher notSufficientMatcher = notSufficientPattern.matcher(message);
+        //Log.d("sms", message);
 
-            if (wonMatcher.find() && !notSufficientMatcher.find()){
-                String wonString = message.substring(wonMatcher.start(), wonMatcher.end())
-                        .replace("원","").replace(",","");
-                int won = Integer.valueOf(wonString);
+        if (message.isEmpty()) {
+            return smsObject;
+        }
 
-                //Matcher payMatcher = payPattern.matcher(message);
-                Matcher earnMatcher = earnPattern.matcher(message);
-                Matcher cardNumMatcher = cardNumPattern.matcher(message);
-                Matcher cardNameMatcher = cardNamePattern.matcher(message);
+        Matcher notSufficientMatcher = notSufficientPattern.matcher(message);
+        if (notSufficientMatcher.find()) {
+            return smsObject;
+        }
 
-                // 가격 추출 및 표시
-                if(earnMatcher.find()){
-                    smsObject.setPrice(Integer.toString(won));
-                }else{
-                    smsObject.setPrice(Integer.toString(-won));
-                }
+        Matcher sufficientMatcher = sufficientPattern.matcher(message);
+        if (!sufficientMatcher.find()) {
+            return smsObject;
+        }
 
-                // insert date & time
-                smsObject.setDate(date);
-                smsObject.setTime(time);
+        Matcher wonMatcher = wonPattern.matcher(message);
+        if(!wonMatcher.find()){
+            return smsObject;
+        }
 
-                // 카드 이름 추출 및 표시
-                String cardName = "";
-                if(cardNameMatcher.find()){
-                    cardName += cardNameMatcher.group();
-                }
-                if(cardNumMatcher.find()){
-                    String tmp = message.substring(cardNumMatcher.start(), cardNumMatcher.end());
-                    cardName += tmp;
-                }
-                smsObject.setCardName(cardName);
+        // get date & time
+        smsObject.setDate(date);
+        smsObject.setTime(time);
 
-                // 쓴곳 추출
-                String[] words = message.split("\\n|\\r| ");
-                int num = 0;
-                for(String string : words){
-                    num++;
-                    if(string.contains("원")){
-                        break;
-                    }
-                }
-                String place="";
-                for(int i = num; i<words.length; i++){
-                    place += words[i];
-                }
-                smsObject.setPlace(place);
+        // get price
+        Matcher earnMatcher = earnPattern.matcher(message);
+
+        String wonString = message.substring(wonMatcher.start(), wonMatcher.end())
+                .replace("원", "").replace(",", "");
+        int won = Integer.valueOf(wonString);
+
+        if (earnMatcher.find()) {
+            smsObject.setPrice(Integer.toString(won));
+        } else {
+            smsObject.setPrice(Integer.toString(-won));
+        }
+
+        // get place
+        String place = "";
+        String[] words = message.split("\\n|\\r| ");
+        for(String string : words){
+            if(!sufficientPattern.matcher(string).find() && !cardNamePattern.matcher(string).find()
+                    && !cardNumPattern.matcher(string).find() && !datePattern.matcher(string).find()
+                    && !timePattern.matcher(string).find() && !timePattern.matcher(string).find()
+                    && !wonPattern.matcher(string).find() && !paymentMethodPattern.matcher(string).find()
+                    && !userNamePattern.matcher(string).find()){
+                place += string;
             }
         }
+        smsObject.setPlace(place);
+
         return smsObject;
     }
 }

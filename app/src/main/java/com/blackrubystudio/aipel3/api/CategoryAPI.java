@@ -19,7 +19,7 @@ public class CategoryAPI {
 
     public Call<Category> getCategory(String place) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://104.198.82.101")
+                .baseUrl("http://aipel.blackrubystudio.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
