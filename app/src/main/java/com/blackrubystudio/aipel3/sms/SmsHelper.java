@@ -46,6 +46,11 @@ public class SmsHelper {
                     }
 
                     String formattedTime = new SimpleDateFormat("HHmm", Locale.US).format(date);
+
+                    if(cur_address.equals("15888100")){
+                        body = body.replaceFirst("롯데","");
+                    }
+
                     smsObjects.add(smsParser.getSmsObject(body, formattedDate, formattedTime));
                 }
             } while (cursor.moveToNext());

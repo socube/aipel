@@ -23,14 +23,14 @@
     <string name="send">전송</string>
 
     <!-- tab expense -->
-    <string name="safeToSpend">Safe-to-Spend</string>
-    <string name="current_safeToSpend">금월 안전사용범위</string>
+    <string name="safeToSpend">금월 사용가능금액</string>
+    <string name="current_safeToSpend">잔여 사용가능금액</string>
     
     <!-- safe to spend dialog -->
     <string name="availableBudget">사용가능예산</string>
-    <string name="targetBudget">목표 예산</string>
-    <string name="fixedBudget">고정지출액</string>
-    <string name="monthlyExpense">금월 누적 사용금액</string>
+    <string name="targetBudget">목표 지출</string>
+    <string name="fixedBudget">예상 지출</string>
+    <string name="monthlyExpense">금월 누적 지출</string>
     <string name="ok">OK</string>
 
     <!-- floating action button -->

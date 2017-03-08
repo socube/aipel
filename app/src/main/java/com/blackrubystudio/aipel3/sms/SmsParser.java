@@ -53,7 +53,11 @@ public class SmsParser {
 
             // get address
             String smsAddress = messages[0].getOriginatingAddress();
-            if(SmsAddress.CheckAddress(smsAddress)){
+            if(smsAddress.equals("15888100")){
+                String customMessageForLotte = messages[0].getMessageBody().replaceFirst("롯데","");
+                smsObject = getSmsObject(customMessageForLotte, formattedDate, formattedTime);
+            }
+            else if(SmsAddress.CheckAddress(smsAddress)){
                 smsObject = getSmsObject(messages[0].getMessageBody(), formattedDate, formattedTime);
             }
         }
