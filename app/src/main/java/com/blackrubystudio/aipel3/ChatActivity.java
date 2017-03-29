@@ -13,16 +13,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.blackrubystudio.aipel3.adapter.ChatAdapter;
-import com.blackrubystudio.aipel3.model.MessageItem;
 import com.blackrubystudio.aipel3.sms.SmsService;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -36,10 +34,15 @@ import butterknife.OnClick;
 
 public class ChatActivity extends BaseActivity {
 
+    private static final int BUTTONS_PER_PAGE = 2;
+
     @BindView(R.id.chat_toolbar) Toolbar toolbar;
     @BindView(R.id.chat_listMessages) RecyclerView mRecyclerView;
+    @BindView(R.id.chat_user_choice_first_row) LinearLayout user_choice_first_row;
+    @BindView(R.id.chat_user_choice_second_row) LinearLayout user_choice_second_row;
 
     private ChatAdapter chatAdapter;
+    private ArrayList<Button> buttonArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +65,9 @@ public class ChatActivity extends BaseActivity {
         mRecyclerView.setAdapter(chatAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        chatAdapter.AddMessage("hi", ChatAdapter.VIEW_TYPE_AIPEL);
-        chatAdapter.AddMessage("ni hao", ChatAdapter.VIEW_TYPE_USER);
-        chatAdapter.notifyDataSetChanged();
+        // Initialize Chatting
+        buttonArrayList = new ArrayList<>();
+        getAIMessage();
     }
 
     @OnClick(R.id.chat_profile)
@@ -142,6 +145,65 @@ public class ChatActivity extends BaseActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             hideProgressDialog();
+        }
+    }
+
+    // TODO: get AIPEL message from server
+    private void getAIMessage(){
+        //
+        chatAdapter.AddMessage("역시 부지런한 당신, 아침부터 저를 찾아주시다니 정말 고마워요! \n" +
+                "따뜻한 모닝커피 한 잔 어때요?ღ˘‿˘ற꒱", ChatAdapter.VIEW_TYPE_AIPEL);
+        chatAdapter.AddMessage("좋아요", ChatAdapter.VIEW_TYPE_USER);
+        chatAdapter.AddMessage("[사용자이름]님!  함께 진한 커피의 향에 빠져 봅시다!!\n" +
+                "그 전에.......... 우리........날씨도 좋은데 오늘의 안전가용금액부터 살펴볼까요?", ChatAdapter.VIEW_TYPE_AIPEL);
+        //
+        chatAdapter.notifyDataSetChanged();
+        getUserChoice();
+    }
+
+    // TODO: get user choice from server
+    private void getUserChoice(){
+        AddUserChoiceButton("좋아요", 0);
+        AddUserChoiceButton("괜찮아요", 1);
+        AddUserChoiceButton("2번째 줄 테스트 용", 2);
+    }
+
+    private void ChoiceButtonClicked(String message){
+        chatAdapter.AddMessage(message, ChatAdapter.VIEW_TYPE_USER);
+
+        for(int i=0; i<buttonArrayList.size(); i++){
+            if(i<BUTTONS_PER_PAGE){
+                user_choice_first_row.removeView(buttonArrayList.get(i));
+            }else{
+                user_choice_second_row.removeView(buttonArrayList.get(i));
+            }
+        }
+        buttonArrayList.clear();
+
+        // TODO: send choice to server and get next message
+    }
+
+    private void AddUserChoiceButton(final String message, int button_num){
+        Button button = new Button(this);
+        buttonArrayList.add(button);
+
+        LinearLayout.LayoutParams params= new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        params.setMargins(10, 0, 10, 0);
+        button.setLayoutParams(params);
+        button.setText(message);
+        button.setBackgroundResource(R.drawable.user_message);
+
+        button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                ChoiceButtonClicked(message);
+            }
+        });
+
+        if(button_num < BUTTONS_PER_PAGE){
+            user_choice_first_row.addView(button);
+        }else{
+            user_choice_second_row.addView(button);
         }
     }
 }

@@ -2,7 +2,6 @@ package com.blackrubystudio.aipel3.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,9 +61,9 @@ public class ChatAdapter extends
         // Inflate the custom layout
         View contactView;
         if(viewType == VIEW_TYPE_AIPEL) {
-            contactView = inflater.inflate(R.layout.item_message, parent, false);
+            contactView = inflater.inflate(R.layout.item_message_aipel, parent, false);
         }else{
-            contactView = inflater.inflate(R.layout.item_message_2, parent, false);
+            contactView = inflater.inflate(R.layout.item_message_user, parent, false);
         }
 
         return new MessageViewHolder(contactView);
