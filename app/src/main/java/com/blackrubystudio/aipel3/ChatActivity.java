@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.blackrubystudio.aipel3.adapter.ChatAdapter;
+import com.blackrubystudio.aipel3.model.MessageItem;
 import com.blackrubystudio.aipel3.sms.SmsService;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -39,8 +40,6 @@ public class ChatActivity extends BaseActivity {
     @BindView(R.id.chat_listMessages) RecyclerView mRecyclerView;
 
     private ChatAdapter chatAdapter;
-    private DatabaseReference mMessageReference;
-    private ChildEventListener mChildEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,57 +62,11 @@ public class ChatActivity extends BaseActivity {
         mRecyclerView.setAdapter(chatAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // New child entries
-        mMessageReference = FirebaseDatabase.getInstance().getReference().child("message");
-    }
-/*
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        ChildEventListener childEventListener = new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Message message = dataSnapshot.getValue(Message.class);
-                ArrayList<String> messages = message.getText();
-                for(String item: messages){
-                    chatAdapter.AddMessage(item);
-                }
-                chatAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        };
-        mChildEventListener = childEventListener;
-        mMessageReference.addChildEventListener(mChildEventListener);
+        chatAdapter.AddMessage("hi", ChatAdapter.VIEW_TYPE_AIPEL);
+        chatAdapter.AddMessage("ni hao", ChatAdapter.VIEW_TYPE_USER);
+        chatAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if(mMessageReference != null){
-            mMessageReference.removeEventListener(mChildEventListener);
-        }
-    }
-*/
     @OnClick(R.id.chat_profile)
     public void onProfileClicked(){
         new activityAsyncTask(this).execute();

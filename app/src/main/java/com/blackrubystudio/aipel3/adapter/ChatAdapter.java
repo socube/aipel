@@ -2,6 +2,7 @@ package com.blackrubystudio.aipel3.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,20 +19,38 @@ import java.util.ArrayList;
 public class ChatAdapter extends
         RecyclerView.Adapter<ChatAdapter.MessageViewHolder>{
 
+    public static final int VIEW_TYPE_AIPEL = 0;
+    public static final int VIEW_TYPE_USER = 1;
+
     public static class MessageViewHolder extends RecyclerView.ViewHolder{
 
         public TextView mTextView;
 
         public MessageViewHolder(View itemView){
             super(itemView);
-
             mTextView = (TextView) itemView.findViewById(R.id.messageTextView);
         }
-
     }
 
-    private ArrayList<String> messageSet = new ArrayList<>();
+    private class MessageWithViewType{
+        String item_message;
+        int view_type;
 
+        public MessageWithViewType(String item_message, int view_type) {
+            this.item_message = item_message;
+            this.view_type = view_type;
+        }
+
+        public String getItem_message() {
+            return item_message;
+        }
+
+        public int getView_type() {
+            return view_type;
+        }
+    }
+
+    private ArrayList<MessageWithViewType> messageSet = new ArrayList<>();
     public ChatAdapter(){}
 
     // inflating
@@ -41,17 +60,20 @@ public class ChatAdapter extends
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.item_message, parent, false);
+        View contactView;
+        if(viewType == VIEW_TYPE_AIPEL) {
+            contactView = inflater.inflate(R.layout.item_message, parent, false);
+        }else{
+            contactView = inflater.inflate(R.layout.item_message_2, parent, false);
+        }
 
-        //Return a new holder instance
-        MessageViewHolder messageViewHolder = new MessageViewHolder(contactView);
-        return messageViewHolder;
+        return new MessageViewHolder(contactView);
     }
 
     // populating
     @Override
     public void onBindViewHolder(MessageViewHolder holder, int position) {
-        String message = messageSet.get(position);
+        String message = messageSet.get(position).getItem_message();
 
         TextView textView = holder.mTextView;
         textView.setText(message);
@@ -62,7 +84,13 @@ public class ChatAdapter extends
         return messageSet.size();
     }
 
-    public void AddMessage(String message){
-        messageSet.add(message);
+    public void AddMessage(String message, int num){
+        MessageWithViewType messageWithViewType = new MessageWithViewType(message, num);
+        messageSet.add(messageWithViewType);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return messageSet.get(position).getView_type();
     }
 }
